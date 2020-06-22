@@ -3,10 +3,11 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import Login from './loginComponent';
 import Signup from './signupComponent';
+import Tabs from './tabsComponent';
 
 export default function Main() {
   return (
-    <Signup />
+    <Tabs />
   );
 }
 
