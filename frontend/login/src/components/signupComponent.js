@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button,
   TouchableWithoutFeedback, Keyboard, Alert } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-import SignupForm from './signupFormComponent'
+import SignupForm from './signupFormComponent';
+import { globalStyles } from '../styles/globalStyles';
 
 export default function Signup() {
 
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repassword, setRepassword] = useState('');
-
   return (
     <TouchableWithoutFeedback onPress={() => {Keyboard.dismiss()}}>
-      <View style={styles.container}>
-        <View style={styles.icon}>
+      <View style={globalStyles.container}>
+        <View style={globalStyles.icon}>
           <AntDesign name="login" size={64} color="#dfe6e9"/>
         </View>
           <SignupForm />
@@ -23,10 +19,3 @@ export default function Signup() {
     </TouchableWithoutFeedback>
   );
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    alignItems: 'center',
-    marginBottom: 40
-  }
-});
