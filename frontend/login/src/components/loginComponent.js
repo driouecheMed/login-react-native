@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button,
   TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-
 import LoginForm from './loginFormComponent';
 import { globalStyles } from '../styles/globalStyles';
 

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, Dimensions, Text } from 'react-native';
 import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-
 import Login from './loginComponent';
 import Signup from './signupComponent';
 
