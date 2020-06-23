@@ -46,7 +46,7 @@ export default function Login() {
 const styles = StyleSheet.create({
   icon: {
     alignItems: 'center',
-    marginBottom: 50
+    marginBottom: 40
   },
   input: {
     paddingVertical: 6,
