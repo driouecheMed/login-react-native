@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import { StyleSheet, View, Text, TextInput, Button, Alert } from 'react-native';
 import ValidationComponent from 'react-native-form-validator';
 import { globalStyles } from '../styles/globalStyles';
+import { API } from '../shared/api';
 
 export default class SignupForm extends ValidationComponent {
 
@@ -28,20 +29,58 @@ export default class SignupForm extends ValidationComponent {
     if(this.state.matchingError === ''){
       if(this.isFormValid()){
         //console.log('Form Valid ...');
-        this.setState({
-          username : '',
-          email: '',
-          password:'',
-          repassword: ''
-        });
-        Alert.alert(
-          "Congra!",
-          "Sign Up Form Valid",
-          [
-            { text: "OK", onPress: () => console.log("OK Pressed") }
-          ],
-          { cancelable: false }
-        );
+        var api = API.concat('/user/create/');
+        fetch(api, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: this.state.email,
+            username: this.state.username,
+            password: this.state.password
+          }),
+        })
+        .then(res => {
+          console.log("res.status: ", res.status);
+          switch (res.status) {
+            case 201:
+              console.log('success');
+              this.setState({
+                username : '',
+                email: '',
+                password:'',
+                repassword: ''
+              });
+              Alert.alert(
+                "Congra!",
+                "Sign Up Form Valid",
+                [
+                  { text: "OK", onPress: () => console.log("OK Pressed") }
+                ],
+                { cancelable: false }
+              );
+              break;
+            case 400:
+              if (res.code === 'ValidationFailed') {
+                console.log(res.fieldMessages);
+              } else {
+                console.log('this is a client (probably invalid JSON) error, but also might be a server error (bad JSON parsing/validation)');
+              }
+              break;
+            case 500:
+              console.log('server error, try again');
+              break;
+            default:
+              console.log('unhandled');
+              break;
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        })
+
       }
     }
   }
