@@ -1,5 +1,3 @@
 # login-react-native
 
-<video controls="controls">
-  <source type="video/mp4" src="screenshots/demo.mp4"></source>
-</video>
+<img src="screenshots/demo.gif" width="60" height="150" />
