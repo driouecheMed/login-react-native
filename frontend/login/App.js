@@ -1,8 +1,6 @@
-import React from 'react';
-import Main from './src/components/mainComponent';
+import React from "react";
+import Tabs from "./src/components/tabsComponent";
 
 export default function App() {
-  return (
-    <Main />
-  );
+  return <Tabs />;
 }
